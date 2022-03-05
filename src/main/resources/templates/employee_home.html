@@ -1,0 +1,37 @@
+<!--Employee home page. Contains all HTML-elements for the employee page. -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--Reference to my custom css file.-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styling.css}"/>
+</head>
+<body>
+<!--Card element-->
+<div class=card>
+    <h1>Welcome</h1>
+    <p style="margin-bottom: 15px">Employees</p>
+    <!--Table element. object=list is defined in the controller class.-->
+    <table class="center" th:object="${list}" id="customerTable" border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Age</th>
+        </tr>
+        <!--Iterate employee object and set them into table.
+        employee variables might indicate that they are not found.
+        This is not an issue in runtime.
+        As service class returns null if response to api fails.
+        -->
+        <tr th:each="employee :${list}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.employee_name}"></td>
+            <td th:text="${employee.employee_salary}"></td>
+            <td th:text="${employee.employee_age}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
